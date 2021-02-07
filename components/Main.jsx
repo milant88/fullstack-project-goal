@@ -7,11 +7,15 @@ import { history } from '../src/app/store/history';
 import { ConnectedNavigation } from "./Navigation";
 import { ConnectedDashboard } from "./Dashboard";
 
-export const Main = () => (
+export const Main = ()=>(
     <Router history={history}>
         <Provider store={store}>
-            <ConnectedNavigation/>
-            <Route exact path="/dashboard" render={() => (<ConnectedDashboard/>)}/>
+            <div className="container mt-3">
+                <ConnectedNavigation/>
+                <Route exact
+                       path="/dashboard"
+                       render={() => (<ConnectedDashboard/>)}/>
+            </div>
         </Provider>
     </Router>
 );
