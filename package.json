@@ -6,7 +6,9 @@
   "scripts": {
     "build": "webpack -p",
     "dev": "webpack-dev-server --open",
-    "initialize": "babel-node src/server/initialize-db.js"
+    "initialize": "babel-node src/server/initialize-db.js",
+    "server": "babel-node src/server/server.js",
+    "server-test": "babel-node src/server/server.spec.js"
   },
   "keywords": [
     "react",
@@ -38,6 +40,9 @@
     "@babel/preset-react": "^7.0.0",
     "@babel/register": "^7.0.0",
     "babel-loader": "^8.0.2",
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.4",
+    "express": "^4.16.3",
     "highground": "^1.0.3-beta",
     "jest": "^23.6.0",
     "mongodb": "^3.1.10",
