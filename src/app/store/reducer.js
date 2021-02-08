@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import * as mutations from './mutations'
 
-import { defaultState } from "../../../server/defaultState";
+import { defaultState } from "../../server/defaultState";
 
 export const reducer = combineReducers({
     groups:(groups = defaultState.groups,action)=>{
