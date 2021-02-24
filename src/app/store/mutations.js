@@ -51,3 +51,8 @@ export const processAuthenticateUser = (status = AUTHENTICATING, session = null)
     session,
     authenticated: status
 });
+
+export const setState = (state = {})=>({
+    type:SET_STATE,
+    state
+});
