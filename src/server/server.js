@@ -2,14 +2,16 @@ import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import { connectDB } from "./connect-db";
+import './initialize-db';
+import { authenticationRoute } from "./authenticate";
 
 let port = 3030;
 let app = express();
 
 app.listen(port, console.log('Server listening on port ', port));
 
-app.get('/', (request, response) => {
-    response.send("Hello World!");
+app.get('/', (req, res) => {
+    res.send("Hello World!");
 });
 
 app.use(
@@ -17,6 +19,8 @@ app.use(
     bodyParser.urlencoded({extended: true}),
     bodyParser.json()
 );
+
+authenticationRoute(app);
 
 export const addNewTask = async task => {
     let db = await connectDB();
@@ -40,14 +44,14 @@ export const updateTask = async task => {
     }
 };
 
-app.post('/task/new', async (request, response) => {
-    let task = request.body.task;
+app.post('/task/new', async (req, res) => {
+    let task = req.body.task;
     await addNewTask(task);
-    request.status(200).send();
+    res.status(200).send();
 });
 
-app.post('/task/update', async (request, response) => {
-    let task = request.body.task;
+app.post('/task/update', async (req, res) => {
+    let task = req.body.task;
     await updateTask(task);
-    request.status(200).send();
+    res.status(200).send();
 });

@@ -4,6 +4,19 @@ import * as mutations from './mutations'
 import { defaultState } from "../../server/defaultState";
 
 export const reducer = combineReducers({
+    session(userSession = defaultState.session || {},action){
+        let {type,authenticated, session} = action;
+        switch(type){
+            case mutations.SET_STATE:
+                return {...userSession, id: action.state.session.id};
+            case mutations.REQUEST_AUTHENTICATE_USER:
+                return {...userSession, authenticated:mutations.AUTHENTICATING};
+            case mutations.PROCESSING_AUTHENTICATE_USER:
+                return {...userSession, authenticated};
+            default:
+                return userSession;
+        }
+    },
     groups:(groups = defaultState.groups,action)=>{
         switch (action.type) {
             case mutations.SET_STATE:
